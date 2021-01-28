@@ -1,15 +1,18 @@
 require:
+  - dotenv/config
   - ts-node/register/transpile-only
+additionalResolvers:
+  - ./src/additional-resolvers/index.ts  
 sources:
-  - name: <name>
+  - name: database 
     handler:
       postgraphile:
-        connectionString: postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}:5432/${PGDATABASE}
+        connectionString: postgres://graphile:${PGPASSWORD}@${PGHOST}:5432/${PGDATABASE}
         cacheIntrospection: true
         appendPlugins:
           - '@graphile-contrib/pg-simplify-inflector'
         schemaName:
-          - <schemaName>
+          - graphile
         options:
           dynamicJson: true
           setofFunctionsContainNulls: false
@@ -26,6 +29,6 @@ sources:
           disableQueryLog: true
           jwtVerifyOptions:
             ignoreExpiration: false
-          default_role: <defaultrole>
-          jwt_secret: ${JWT_SECRET} 
-          jwt_token: <jwt_token>
+          default_role: graphile_anonymous 
+          jwtSecret: ${GRAPHILE_JWT_SECRET}
+          jwtPgTypeIdentifier: graphile.jwt_token
