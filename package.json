@@ -19,7 +19,6 @@
     "@graphql-mesh/postgraphile": "^0.8.7",
     "@graphql-mesh/runtime": "^0.10.20",
     "@graphql-mesh/transform-prefix": "^0.6.20",
-    "dotenv": "^8.2.0",
     "graphql": "^15.4.0"
   },
   "scripts": {
